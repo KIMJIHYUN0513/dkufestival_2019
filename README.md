@@ -3,7 +3,7 @@
 <br>
 <hr>
 <li>2019-03-25 updated by 지현<br>
-home.html, schedule.html, event.html, booth.html, write.html 페이지 만들고 url 설정(?)
+home.html, schedule.html, event.html, booth.html, write.html 페이지 만들고 url 설정
 <hr>
 <li>2019-03-27 updated by 지현<br>
 Wirte model 생성(사용자들의 댓글 모델)<br>
