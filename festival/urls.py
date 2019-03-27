@@ -9,4 +9,5 @@ urlpatterns = [
     path('festival/event',dkufestival.views.event,name="event"),
     path('festival/booth',dkufestival.views.booth,name="booth"),
     path('festival/write',dkufestival.views.write,name="write"),
+    path('festival/create',dkufestival.views.create,name="create"),
 ]

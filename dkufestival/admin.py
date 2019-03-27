@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import Wirte
 
-# Register your models here.
+admin.site.register(Wirte)  # 아이디 dku 비번 dku
