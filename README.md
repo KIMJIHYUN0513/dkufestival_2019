@@ -1,6 +1,15 @@
 # dkufestival_2019
 단국대학교 축제 서비스
 <br>
+- 필요한 기능들
+<br>
+1. 시계<br>
+2. 부스 지도<br>
+3. 방명록 기능<br>
+4. 이벤트 모델<br>
+5. 가수 static 파일로 가져오기<br>
+
+<br>
 <hr>
 <li>2019-03-25 updated by 지현<br><br>
 home.html, schedule.html, event.html, booth.html, write.html 페이지 만들고 url 설정
