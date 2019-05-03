@@ -1,0 +1,27 @@
+.body{
+    margin:15;padding:0;
+    height:100%;
+}
+
+.header{
+    text-align: center;
+    border:3px solid  yellow;
+    border-radius: 1em;
+    padding:1em;
+    min-height:30px;
+}
+.contents{
+    padding: 1em;
+    height:80%;
+    border:3px solid  green;
+    border-radius: 1em;
+}
+.footer{
+    border-radius: 1em;
+    border:3px solid  blue;
+    padding: 1em;
+}
+.livestream{
+    border:3px solid palevioletred;
+    padding: 0.2em;
+}

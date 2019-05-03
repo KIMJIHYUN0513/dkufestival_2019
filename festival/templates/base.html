@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2019 DKU FESTIVAL</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/base.css' %}">
+    <style>
+        .body{
+            width:300px;
+        }
+        .header{
+            text-align: center;
+            border:3px solid  black;
+            border-radius: 1em;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .logo-box{
+        }
+        .contents{
+            overflow:auto;
+            max-height:70%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="logo-box">
+                <b>로고자리</b>
+            </div>
+        </div>
+        <div class="contents">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+        <div class="footer"><!--제대로 동작하게 코딩중..-->
+            <div class="livestream" type="text" name="livestream" >
+                ({{post_name}}){{post_body}}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const livestream = document.querySelector('.livestream');
+        let post_name = "{{post_name|safe}}";
+        let post_body = "{{post_body|safe}}";
+        let post_len = "{{post_len|safe}}";
+        console.log(post_name);
+        console.log(post_body);
+        console.log(post_len);
+
+        function loadLivestream(post_len) {
+            for(i=0;i<post_len;i++){
+                setTimeout(() => {
+                    let post_named = post_name[i]
+                    let post_bodyd = post_body[i]
+
+                    livestream.innerText = `${post_named} 님이 " ${post_bodyd} "라고 하셨습니다`
+                }, 1000);
+            }
+        }
+
+        function init() {
+            loadLivestream(post_len);
+        }
+
+
+        init();
+    </script>
+</body>
+</html>
