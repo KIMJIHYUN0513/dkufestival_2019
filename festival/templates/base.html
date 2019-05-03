@@ -43,33 +43,37 @@
         </div>
         <div class="footer"><!--제대로 동작하게 코딩중..-->
             <div class="livestream" type="text" name="livestream" >
-                ({{post_name}}){{post_body}}
             </div>
         </div>
     </div>
 
     <script>
         const livestream = document.querySelector('.livestream');
-        let post_name = "{{post_name|safe}}";
-        let post_body = "{{post_body|safe}}";
-        let post_len = "{{post_len|safe}}";
-        console.log(post_name);
-        console.log(post_body);
-        console.log(post_len);
+        let post_name1 = "{{post_name|safe}}";
+        let post_body1 = "{{post_body|safe}}";
 
-        function loadLivestream(post_len) {
-            for(i=0;i<post_len;i++){
+        let post_name = post_name1.split(',')
+        let post_body = post_body1.split(',')
+
+        console.log(post_name);
+        console.log(post_name[1]);
+        console.log(post_body);
+        console.log(post_body[1]);
+
+        function loadLivestream() {
+            for(i=0;i<post_name.length;i++){
                 setTimeout(() => {
                     let post_named = post_name[i]
                     let post_bodyd = post_body[i]
 
                     livestream.innerText = `${post_named} 님이 " ${post_bodyd} "라고 하셨습니다`
-                }, 1000);
+                    console.log(post_named , post_bodyd);
+                }, i===0 ? 0 : 1000);
             }
         }
 
         function init() {
-            loadLivestream(post_len);
+            loadLivestream();
         }
 
 
