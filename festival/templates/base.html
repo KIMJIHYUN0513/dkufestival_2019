@@ -9,23 +9,54 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'base/base.css' %}">
     <style>
-        .body{
-            width:300px;
-        }
-        .header{
-            text-align: center;
-            border:3px solid  black;
-            border-radius: 1em;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-        .logo-box{
-        }
-        .contents{
-            overflow:auto;
-            max-height:70%;
-        }
+    .body{
+        margin:15;padding:0;
+        height:100%;
+        width:300px;
+    }
+
+    .header{
+        text-align: center;
+        border:0;
+        border-radius: 0.1em;
+        padding:1em;
+        min-height:30px;
+        box-shadow: 0 3px 5px grey ;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:relative;
+        z-index:1;
+    }
+    .contents{
+        padding: 1em;
+        height:80%;
+        border:0;
+        border-radius: 1em;
+    }
+    .footer{
+        border-radius: 0;
+        border:0;
+        background-color:black;
+        color:white;
+        padding: 1em;
+    }
+    .footer{
+        text-align:right;
+    }
+    .livestream{
+        text-align:center;
+        border:0;
+        padding: 0.2em;
+
+    }
+    .logo-box{
+    }
+    .contents{
+        overflow:auto;
+        max-height:70%;
+    }
+
         
     </style>
 </head>
@@ -44,6 +75,8 @@
         <div class="footer"><!--제대로 동작하게 코딩중..-->
             <div class="livestream" type="text" name="livestream" >
             </div>
+            <br>
+            <span style="font-size:0.5em">made by 멋쟁이 사자처럼</span>
         </div>
     </div>
 
