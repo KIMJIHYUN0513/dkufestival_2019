@@ -11,13 +11,19 @@
             grid-gap:5vw;
             width:70vw;
             height:70vw;
+
+            position:relative;
+            top:-20px;
         }
         .contents{
             display:flex;
-            align-items:center;
+            flex-direction:column;
+            justify-content:space-around;
+        }
+        .timer{
+            position:relative;
         }
         .container div{
-            background-color:red;
             height:30vw;
             width:30vw;
             text-align:center;
@@ -30,6 +36,28 @@
             font-size: 1.5em;
             color:white;
         }
+        .clock{
+            text-align:center;
+        }
+        .d-day{
+            text-align:center;
+        }
+        .btn1{
+            background: rgb(121,9,88);
+            background: linear-gradient(90deg, rgba(121,9,88,0.7343312324929971) 32%, rgba(51,103,185,1) 67%, rgba(0,212,255,1) 100%);
+        }
+        .btn2{
+            background: rgb(11,121,9);
+            background: linear-gradient(90deg, rgba(11,121,9,0.7343312324929971) 32%, rgba(185,51,76,1) 67%, rgba(0,212,255,1) 100%);
+        }
+        .btn3{
+            background: rgb(9,121,28);
+            background: linear-gradient(90deg, rgba(9,121,28,0.7343312324929971) 32%, rgba(182,185,51,1) 58%, rgba(255,0,69,1) 100%);
+        }
+        .btn4{
+            background: rgb(56,9,121);
+            background: linear-gradient(90deg, rgba(56,9,121,0.7343312324929971) 32%, rgba(51,185,84,1) 58%, rgba(254,255,0,1) 100%);
+        }
     </style>
 </head>
 <body>
@@ -38,12 +66,50 @@
 
     {% block content %}
 
-    <div class="container">
-        <div><a href="{% url 'schedule' %}">스케줄</a></div>
-        <div><a href="{% url 'booth' %}">지도</a></div>
-        <div><a href="{% url 'game' %}">미션게임</a></div>
-        <div><a href="{% url 'write' %}">방명록</a></div>
+    <div class="timer">
+        <div class="clock">
+        </div>
+    
+        <div class="d-day">
+        </div>
     </div>
+
+    <div class="container">
+        <div class="btn1"><a href="{% url 'schedule' %}">스케줄</a></div>
+        <div class="btn2"><a href="{% url 'booth' %}">지도</a></div>
+        <div class="btn3"><a href="{% url 'game' %}">미션게임</a></div>
+        <div class="btn4"><a href="{% url 'write' %}">방명록</a></div>
+    </div>
+
+    
+
+    <script>
+        const clock = document.querySelector('.clock');
+        const dday = document.querySelector('.d-day');
+
+
+        function showTime(){
+            const now = new Date();
+            const d_day = new Date('May 14, 2019 00:00:00');
+            const h = now.getHours()
+            const m = now.getMinutes()
+            const s = now.getSeconds()
+            clock.innerText = `현재시각 ${h>12? `오후 ${h-12}` : `오후 ${h}`} : ${m} : ${s}`;
+
+            const time_left = d_day-now
+            const d = Math.floor(time_left/(3600000*24));
+            const n = Math.floor(0-d);
+
+            dday.innerText = d_day-now < 0 ? `축제 ${n} 일차` : `축제까지 ${d}일 남았습니다`;
+        }
+
+        function init(){
+            setInterval(showTime,1000);
+        }
+        
+        init();
+
+    </script>
 
     {% endblock %}
 </body>

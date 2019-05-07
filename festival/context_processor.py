@@ -9,26 +9,21 @@ def base(request):
 
     # for문을 돌려서 빼내서 원하는 형태로 딕셔너리를 만들자
 
-    posts_dic = {}
+    posts_dict = {}
 
     for post in posts:
-        posts_dic[post.name] = post.body
+        posts_dict[post.name] = post.body
 
-    print('딕셔내뤼: ', posts_dic)
+    print('딕셔내뤼: ', posts_dict)
 
-    posts_len = len(posts_dic)
+    # 이 딕셔너리를 json화 시켜서 템플릿으로 가져간 다음,
 
-    posts_name = posts_dic.keys()
-    posts_body = posts_dic.values()
+    # 거기에서 javascript object로 사용하도록 하자.
 
-    posts_name_list = list(posts_name)
-    posts_body_list = list(posts_body)
+    posts_json = json.dumps(posts_dict, ensure_ascii=False)
 
-    print(posts_name_list)
-    print(posts_body_list)
+    print('제이쓴', posts_json)
 
     return {
-        'post_name': posts_name_list,
-        'post_body': posts_body_list,
-        'post_len': posts_len
+        'posts_json': posts_json
     }
