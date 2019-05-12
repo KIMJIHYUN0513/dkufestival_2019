@@ -1,63 +1,77 @@
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <style>
-        .container{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            grid-gap:5vw;
-            width:70vw;
-            height:70vw;
+    .container{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-gap:5vw;
+        width:70vw;
+        height:70vw;
+        position:relative;
+        top:-20px;
+    }
+    .contents{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+    .timer{
+        position:relative;
+        color:white;
+        font-weight:700;
+        font-size:1.5em;
+    }
+    .container div{
+        height:100%;
+        width:100%;
+        text-align:center;
+        border-radius:1em;
+        background-color:black;
+        display:flex;
+        align-items:center;
+        flex-direction:column;
+        justify-content:center;
+    }
+    .container a{
+        /*font-family:;*/
+        font-size: 1em;
+        color:white;
+        text-decoration:none;
+    }
+    .clock{
+        text-align:center;
+    }
+    .d-day{
+        text-align:center;
+        min-height:2em;
+        font-size:1em;
+    }
 
-            position:relative;
-            top:-20px;
-        }
-        .contents{
-            display:flex;
-            flex-direction:column;
-            justify-content:space-around;
-        }
-        .timer{
-            position:relative;
-        }
-        .container div{
-            height:30vw;
-            width:30vw;
-            text-align:center;
-            vertical-align:middle;
-            line-height:30vw;
-            border-radius:1em;
-        }
-        .container div a{
-            /*font-family:;*/
-            font-size: 1.5em;
-            color:white;
-        }
-        .clock{
-            text-align:center;
-        }
-        .d-day{
-            text-align:center;
-        }
-        .btn1{
-            background: rgb(121,9,88);
-            background: linear-gradient(90deg, rgba(121,9,88,0.7343312324929971) 32%, rgba(51,103,185,1) 67%, rgba(0,212,255,1) 100%);
-        }
-        .btn2{
-            background: rgb(11,121,9);
-            background: linear-gradient(90deg, rgba(11,121,9,0.7343312324929971) 32%, rgba(185,51,76,1) 67%, rgba(0,212,255,1) 100%);
-        }
-        .btn3{
-            background: rgb(9,121,28);
-            background: linear-gradient(90deg, rgba(9,121,28,0.7343312324929971) 32%, rgba(182,185,51,1) 58%, rgba(255,0,69,1) 100%);
-        }
-        .btn4{
-            background: rgb(56,9,121);
-            background: linear-gradient(90deg, rgba(56,9,121,0.7343312324929971) 32%, rgba(51,185,84,1) 58%, rgba(254,255,0,1) 100%);
-        }
+    .contents{
+        background: rgb(14,4,56);
+        background: linear-gradient(180deg, rgba(14,4,56,1) 19%, rgba(75,12,67,1) 65%);
+    }
+    .header:after, .header:before{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        content:"";
+        z-index:-1;
+    }
+    .header:after{
+        background:radial-gradient(circle,red,transparent);
+        background-size:400%;
+        animation:colorSpin 30s linear infinite;
+    } 
+    .header:before{
+        background-color:yellow;
+    }
+
+
+
+
     </style>
 </head>
 <body>
@@ -66,6 +80,8 @@
 
     {% block content %}
 
+
+    {% load static %}
     <div class="timer">
         <div class="clock">
         </div>
@@ -73,15 +89,33 @@
         <div class="d-day">
         </div>
     </div>
+    
+    <br><br>
 
     <div class="container">
-        <div class="btn1"><a href="{% url 'schedule' %}">스케줄</a></div>
-        <div class="btn2"><a href="{% url 'booth' %}">지도</a></div>
-        <div class="btn3"><a href="{% url 'game' %}">미션게임</a></div>
-        <div class="btn4"><a href="{% url 'write' %}">방명록</a></div>
+        <div class="btn1">
+            <a href="{% url 'schedule' %}"><img src="{% static 'icons/timetable.svg' %}" alt="" width="50%" style="position:relative;top:8;"></a>
+            <br>
+            <a href="{% url 'schedule' %}">스케줄</a>
+        </div>
+        <div class="btn2">
+            <a href="{% url 'booth' %}"><img src="{% static 'icons/map.svg' %}" alt="" width="50%" style="position:relative;top:7;"></a>
+            <br>
+            <a href="{% url 'booth' %}">지도</a>
+        </div>
+        <div class="btn3">
+            <a href="{% url 'game' %}"><img src="{% static 'icons/puzzle.svg' %}" alt="" width="50%" style="position:relative;left:4;top:8"></a>
+            <br>
+            <a href="{% url 'game' %}">미스터리게임</a>
+        </div>
+        <div class="btn4">
+            <a href="{% url 'write' %}"><img src="{% static 'icons/footprint.svg' %}" alt="" width="50%" style="position:relative;left:5;top:6;"></a>
+            <br>
+            <a href="{% url 'write' %}">방명록</a>
+        </div>
     </div>
 
-    
+
 
     <script>
         const clock = document.querySelector('.clock');
@@ -94,17 +128,31 @@
             const h = now.getHours()
             const m = now.getMinutes()
             const s = now.getSeconds()
-            clock.innerText = `현재시각 ${h>12? `오후 ${h-12}` : `오후 ${h}`} : ${m} : ${s}`;
 
             const time_left = d_day-now
             const d = Math.floor(time_left/(3600000*24));
             const n = Math.floor(0-d);
 
-            dday.innerText = d_day-now < 0 ? `축제 ${n} 일차` : `축제까지 ${d}일 남았습니다`;
+            dday.innerText = d_day-now < 0 ? `축제 ${n} 일차` : `축제까지 ${d}일 남았습니다!`;
+        }
+
+
+
+        const btns = document.querySelector('.container');
+
+        console.log(btns);
+
+        function buttonClick(btns){
+            btns.addEventListener("click",function buttonClickHandler(e){
+                //해당 버튼에 알맞는 url로 바뀌게끔 작성
+                location.href = e.target.querySelector('a').href
+                //그림을 클릭했을 때에도!
+            });
         }
 
         function init(){
             setInterval(showTime,1000);
+            buttonClick(btns);
         }
         
         init();

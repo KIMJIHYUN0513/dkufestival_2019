@@ -1,0 +1,80 @@
+<head>
+<style>
+
+body, html{
+    margin:0;padding:0;
+}
+.contents{
+    margin:0;padding:0;
+}
+.container-fluid{
+    text-align:center;
+    background-color: pink;
+    margin:0;padding:0;
+}
+
+form{
+    margin: 0 auto;
+    display:flex;
+    justify-content:center;
+}
+
+form div input{
+    width:55vw;
+}
+
+
+</style>
+</head>
+
+<body>
+    
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+<br>
+<h3 style="margin-top:0">- 명예의전당 -</h3>
+
+<h1>
+    축하합니다!
+</h1>
+
+{% if records is not none %}
+    <div class="records">
+        {% for record in records.all  %}
+        <div>
+        <h1>{{record.pk}}등 : {{record.name_summary}}님 </h1>
+        <p>{{record.pub_date}}</p>
+        <p>{{record.body_summary}}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<br><br>
+
+<hr>
+이름과 한마디를 입력하시면 기록과 랭킹을 확인하실 수 있습니다!
+<br><br>
+{% if records is none %}
+    <form action="{% url 'create_record' %}">
+        <div>
+            <input type="text" name="name" placeholder="존귀한 이름을 입력하세요 (10자 이내)"><br>
+            <input type="text" name="body" placeholder="남기고 싶은 한마디 (20자 이내)">
+        </div>
+        <input type="submit">
+    </form>
+{% endif %}
+
+<br><br>
+
+</div>
+
+{% endblock %}
+
+
+
+</body>
