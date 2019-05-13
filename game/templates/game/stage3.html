@@ -6,10 +6,13 @@ body, html{
 }
 .contents{
     margin:0;padding:0;
+    text-align:center;
+    background-color:black;
+    color:white;
+    line-height:1.5em;
 }
 .container-fluid{
     text-align:center;
-    background-color: pink;
     margin:0;padding:0;
 }
 
@@ -25,15 +28,50 @@ body, html{
 
 <div class="container-fluid">
 <br>
-<h3 style="margin-top:0">- STAGE 3 -</h3>
+<h3 style="margin-top:0.3em;font-size:1.5em">Mystery Game</h3>
+<p style="font-size:1em;margin-top:-0.8em">- stage 3 -</p>
 
-스퉤이지3
-
-<br><br>
+<h2>
+    (번쩍)
+</h2> 
 <br>
 
-<form action="{% url 'stage4' %}">
-    <input type="text" name="answ3" placeholder="정답을 입력해주세요">
+{% load static %}
+
+<img src="{% static 'blue_stone.png' %}" alt="" width="30%">
+
+<br> <br>
+
+<p>어! 또 생겼다!!! <br>
+이건.. grade stone..? <br>
+학점 스톤? <br>
+나도 4.5 한 번만이라도 맞아보고 싶다... <br>
+이제 두 개 남았네. <br>
+학교 곳곳을 찾아봐야겠다! <br>
+(꼬르륵..) <br>
+아.. 매점 가서 뭐라도 사먹어야겠다 <br>
+소프트웨어관 앞에 있는 CU로 가야겠다 <br>
+. <br>
+. <br>
+. <br>
+[ 축제 이벤트 | 미로를 풀면 상품을 드립니다! ]</p>
+
+<br>
+
+<img src="{% static 'quiz/q03.png'%}" alt="" width="100%">
+
+<br><br>
+
+<p>무슨 이런 이벤트를 하지? <br>
+잠깐.. 저거 스톤 아닌가? <br>
+저 스톤이 뭐였더라.. <br>
+intern stone... <br></p>
+<br>
+
+<div id="hint"></div>
+
+<form id="userInputForm" action="{% url 'stage4' %}">
+    <input id="userInput" type="text" name="answ4" placeholder="정답을 입력해주세요">
     <input type="submit">
 </form>
 
@@ -41,6 +79,33 @@ body, html{
 
 </div>
 
-{% endblock %}
+
+
+<script>
+
+const userInputForm = document.getElementById('userInputForm');
+    const userInput = document.getElementById('userInput');
+    const hint = document.getElementById('hint');
+
+    function inputValidate3(event){
+        event.preventDefault();
+        let currentValue = userInput.value;
+        if (currentValue !== 'linc+' && currentValue !== 'LINC+' && currentValue !== 'LINC +' && currentValue !== 'linc +' && currentValue !== 'Linc+' && currentValue !== 'Linc +'){
+            hint.innerText = "Hint) 사업단"
+            userInput.value = ""
+        }else{
+            userInputForm.submit();
+        }
+    }
+    
+    function init(){
+        userInputForm.addEventListener('submit', inputValidate3);
+    }
+
+    init();
+
+</script>
 
 </body>
+
+{% endblock %}

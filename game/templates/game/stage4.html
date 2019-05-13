@@ -6,10 +6,14 @@ body, html{
 }
 .contents{
     margin:0;padding:0;
+    text-align:center;
+    background-color:black;
+    color:white;
+    line-height:1.5em;
 }
+
 .container-fluid{
     text-align:center;
-    background-color: pink;
     margin:0;padding:0;
 }
 
@@ -25,15 +29,45 @@ body, html{
 
 <div class="container-fluid">
 <br>
-<h3 style="margin-top:0">- STAGE 4 -</h3>
+<h3 style="margin-top:0.3em;font-size:1.5em">Mystery Game</h3>
+<p style="font-size:1em;margin-top:-0.8em">- stage 4 -</p>
 
-4444
+<br>
+<h1>
+    (번쩍)
+</h1> 
+<br>
+
+{% load static %}
+
+<img src="{% static 'green_stone.png' %}" alt="" width="30%">
+
+<br><br>
+
+<p>와! 이제 인턴도 합격할 수 있는건가? <br>
+이제 하나 남았네. <br>
+빨간색이... love stone??!!!! <br>
+연애고자인 내가 드디어 연애를 할 수 있는건가 <br>
+나도 축제 때 손잡고 다니고 싶다.. <br>
+에휴.. 연예인이나 보러가야지... <br>
+오늘 라인업이 어떻게 되더라? <br></p>
+
+<br><br>
+
+<img src="{% static 'quiz/q04.png'%}" alt="" width="100%">
+
+<br><br>
+
+어? 근데 저건 love stone..? <br>
+이것도 문제인가..??!!! 
 
 <br><br>
 <br>
 
-<form action="{% url 'hallofthefame' %}">
-    <input type="text" name="answ4" placeholder="정답을 입력해주세요">
+<div id="hint"></div>
+
+<form id="userInputForm" action="{% url 'hallofthefame' %}">
+    <input id="userInput" type="text" name="answ_last" placeholder="정답을 입력해주세요">
     <input type="submit">
 </form>
 
@@ -41,6 +75,31 @@ body, html{
 
 </div>
 
-{% endblock %}
+
+<script>
+
+const userInputForm = document.getElementById('userInputForm');
+    const userInput = document.getElementById('userInput');
+    const hint = document.getElementById('hint');
+
+    function inputValidate4(event){
+        event.preventDefault();
+        let currentValue = userInput.value;
+        if (currentValue !=='Colorful' && currentValue !=='colorful' && currentValue !=='COLORFUL'){
+            hint.innerText = "DANFESTA"
+            userInput.value = ""
+        }else{
+            userInputForm.submit();
+        }
+    }
+    
+    function init(){
+        userInputForm.addEventListener('submit', inputValidate4);
+    }
+
+    init();
+
+</script>
 
 </body>
+{% endblock %}

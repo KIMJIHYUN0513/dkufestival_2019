@@ -6,10 +6,12 @@ body, html{
 }
 .contents{
     margin:0;padding:0;
+    text-align:center;
+    background-color:black;
+    color:white;
 }
 .container-fluid{
     text-align:center;
-    background-color: pink;
     margin:0;padding:0;
 }
 
@@ -23,18 +25,24 @@ body, html{
 
 {% block content %}
 
+{% load static %}
+
 <div class="container-fluid">
 <br>
-<h3 style="margin-top:0">- 미스터리 게임 -</h3>
+<h3 style="margin-top:0.3em;font-size:1.5em">Mystery Game</h3>
+<p style="font-size:1em;margin-top:-0.8em">- intro -</p>
 
 
 <iframe width="100%" height="400vh" src="https://www.youtube.com/embed/iD0mTzKhAfU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br><br>
-<br>
+<img src="{% static 'likelion.png' %}" alt="" width="50%">
+<br><br>
 
-<form action="{% url 'stage2' %}">
-    <input type="text" name="answ" placeholder="정답을 입력해주세요">
+<p>LIKELION을 입력하면 게임이 시작됩니다.</p>
+<div id="hint"></div>
+<form id="userInputForm" action="{% url 'stage1' %}">
+    <input id="userInput" type="text" name="answ" placeholder="정답을 입력해주세요">
     <input type="submit">
 </form>
 
@@ -42,6 +50,30 @@ body, html{
 
 </div>
 
-{% endblock %}
 
+
+<script>
+    const userInputForm = document.getElementById('userInputForm');
+    const userInput = document.getElementById('userInput');
+    const hint = document.getElementById('hint');
+
+    function inputValidate(event){
+        event.preventDefault();
+        let currentValue = userInput.value;
+        if (currentValue !== 'likelion' && currentValue !== 'LIKELION' && currentValue !== 'Likelion'){
+            hint.innerText = "hint) LIKELION"
+            userInput.value = ""
+        }else{
+            userInputForm.submit();
+        }
+    }
+    
+    function init(){
+        userInputForm.addEventListener('submit', inputValidate);
+    }
+
+    init();
+</script>
+
+{% endblock %}
 </body>

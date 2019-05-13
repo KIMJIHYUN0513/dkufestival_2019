@@ -12,20 +12,23 @@
 
 <div class="container">
   <br>
-  <b>2019 DKU FESTIVAL 실시간 한마디</b>
-  <br><br>
-  <form action="{% url 'create' %}">
-      <b>name : </b>
+  <b>2019 DKU FESTIVAL 방명록</b>
+  <p>
+    <form action="{% url 'create' %}">
+      <p><b>name : </b><br>
       <input type="text" name="name">
       <br><br>
       <b>contents : </b>
-      <textarea cols=40 rows=2 name="body"></textarea>
-      <br><br>
+      <textarea cols=40 rows=2 name="body"></textarea></p>
       <input class="btn btn-success" type="submit" value="한마디 남기기" style="float:right">
-  </form>
+    </form>
+  </p>
 </div>
 
+
 <br><br>
+
+<p style="font-size:0.8em;text-align:center;">※삭제가 불가능합니다 예쁘고 고운말만 써주세요※</p>
 
 <div class="container">
   <br>
@@ -41,6 +44,9 @@
   {% endfor %}
 </div>
 
+<marquee behavior="" direction="">멋쟁이사자처럼 7기   구아영   권영주   김보민   김성규   김원호   김재훈   김지수   김지현   김태홍   노유정   박태윤   박현주   변상운   손성덕   신경섭   이동규   이라은   이채연   이필립   이환주   임수정   정재현   조현지   천예원   최수빈</marquee>
+
+<br><br>
 
 {% endblock %}
 

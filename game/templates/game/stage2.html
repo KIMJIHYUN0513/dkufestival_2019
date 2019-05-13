@@ -6,10 +6,13 @@ body, html{
 }
 .contents{
     margin:0;padding:0;
+    text-align:center;
+    background-color:black;
+    color:white;
+    line-height:1.5em;
 }
 .container-fluid{
     text-align:center;
-    background-color: pink;
     margin:0;padding:0;
 }
 
@@ -25,22 +28,85 @@ body, html{
 
 <div class="container-fluid">
 <br>
-<h3 style="margin-top:0">- STAGE 2 -</h3>
+<h3 style="margin-top:0.3em;font-size:1.5em">Mystery Game</h3>
+<p style="font-size:1em;margin-top:-0.8em">- stage 2 -</p>
 
-스테이지 투여 불만있냐고
-
-<br><br>
+<h3>
+    (번쩍)
+</h3> 
 <br>
 
-<form action="{% url 'stage3' %}">
-    <input type="text" name="answ2" placeholder="정답을 입력해주세요">
+{% load static %}
+
+<img src="{% static 'yellow_stone.png' %}" alt="" width="30%">
+
+<br><br>
+
+<p>어!!! 스톤이 생겼다!! <br>
+이건 무슨 스톤이지? <br>
+inssa stone...인싸스톤?? <br>
+이제 나도 인싸가 될 수 있는건가? <br>
+학교 다른 곳도 찾아볼까? <br>
+<br>
+.<br>
+.<br>
+.<br>
+<br>
+범정관에 분수도 틀었네!!<br>
+여기에 이상한 책이 있잖아<br>
+(너무 의심스러운데..)<br></p>
+
+<img src="{% static 'quiz/q02.png'%}" alt="" width="100%">
+
+<br><br>
+
+<p>
+뭐지 원소기호 인가?<br>
+물음표에 들어갈 4개를 알아야하는데... <br>
+Si는 규소, N은 질소, Ce는...뭐지?? <br>
+Si N Ce... <br>
+SiNCe... <br>
+원소기호가 아닌가..?! <br>
+</p>
+
+<div id="hint"></div>
+
+<form id="userInputForm" action="{% url 'stage3' %}">
+    <input id="userInput" type="text" name="answ3" placeholder="정답을 입력해주세요">
     <input type="submit">
 </form>
 
-<br><br>
 
 </div>
 
-{% endblock %}
+
+
+
+
+<script>
+    const userInputForm = document.getElementById('userInputForm');
+    const userInput = document.getElementById('userInput');
+    const hint = document.getElementById('hint');
+
+    function inputValidate2(event){
+        event.preventDefault();
+        let currentValue = userInput.value;
+        if (currentValue !== '1947' && currentValue !== '1 9 4 7'){
+            hint.innerText = "Hint) 숫자 4개"
+            userInput.value = ""
+        }else{
+            userInputForm.submit();
+        }
+    }
+    
+    function init(){
+        userInputForm.addEventListener('submit', inputValidate2);
+    }
+
+    init();
+</script>
+
 
 </body>
+
+{% endblock %}

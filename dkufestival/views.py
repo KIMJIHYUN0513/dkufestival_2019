@@ -6,17 +6,37 @@ from .models import Wirte
 def home(request):
     return render(request, 'home.html')
 
+# 카드뉴스들
+
 
 def schedule(request):
-    return render(request, 'schedule.html')
+    return render(request, 'cardnews/schedule.html')
+
+
+def booth(request):
+    return render(request, 'cardnews/booth.html')
+
+
+def mainstage(request):
+    return render(request, 'cardnews/mainstage.html')
+
+
+def busking(request):
+    return render(request, 'cardnews/busking.html')
+
+def lineup(request):
+    return render(request, 'cardnews/lineup.html')
+
+def nightmarket(request):
+    return render(request, 'cardnews/nightmarket.html')
 
 
 def event(request):
     return render(request, 'event.html')
 
 
-def booth(request):
-    return render(request, 'booth.html')
+def map(request):
+    return render(request, 'map.html')
 
 
 def write(request):

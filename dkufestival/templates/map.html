@@ -1,0 +1,113 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+.contents{
+        background-color:#95b763;
+        text-align:center;
+}
+.btns{  
+        padding:5vw;
+        background-color:transparent;
+        position:absolute;
+}
+#btn1{
+        top:17%;
+        left:35%;
+}
+#btn2{
+        top:35%;
+        left:4%;
+}
+#btn3{
+        top:37%;
+        left:41%;
+}
+#btn4{
+        top:23%;
+        left:54%;
+}
+#btn5{  
+        padding:10vw;
+        top:68%;
+        left:11%;
+}
+.map{
+}
+
+
+</style>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<h2 style="margin-top:0.8em;font-weight:550">MAP</h2>
+<p style="font-size:1em;margin-bottom:-1.5em">주황색 버튼을 클릭하면 해당 장소의 <br> 이벤트 정보를 확인할 수 있습니다.</p>
+<div class="map" style="background-image:url('{% static 'img/map.png' %}');
+        min-height:25rem;
+        width:100%;
+        height:auto;
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:contain;
+        position:relative;">
+        <div class="btns" id="btn1"></div>
+        <div class="btns" id="btn2"></div>
+        <div class="btns" id="btn3"></div>
+        <div class="btns" id="btn4"></div>
+        <div class="btns" id="btn5"></div>
+</div>
+
+
+
+
+<script>
+
+const btn1 = document.getElementById('btn1');
+const btn2 = document.getElementById('btn2');
+const btn3 = document.getElementById('btn3');
+const btn4 = document.getElementById('btn4');
+const btn5 = document.getElementById('btn5');
+
+function btnclck(){
+        console.log('dd');
+        location.href="/festival/nightmarket"
+}
+function btnclck2(){
+        console.log('dd');
+        location.href="/festival/busking"
+}
+function btnclck3(){
+        console.log('dd');
+        location.href="/festival/booth"
+}
+function btnclck4(){
+        console.log('dd');
+        location.href="/festival/mainstage"
+}
+function btnclck5(){
+        console.log('dd');
+        location.href="/festival/schedule"
+}
+
+function init(){
+        btn1.addEventListener('click',btnclck);
+        btn2.addEventListener('click',btnclck2);
+        btn3.addEventListener('click',btnclck3);
+        btn4.addEventListener('click',btnclck4);
+        btn5.addEventListener('click',btnclck5);
+}
+
+init();
+
+</script>
+{% endblock %}
+
+</body>

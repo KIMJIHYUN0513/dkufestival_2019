@@ -1,0 +1,95 @@
+<head>
+<style>
+
+body, html{
+    margin:0;padding:0;
+}
+.contents{
+    margin:0;padding:0;
+    background-color:black;
+    color:white;
+    text-align:center;
+}
+p{
+    line-height:1.5em;
+}
+.container-fluid{
+    text-align:center;
+    margin:0;padding:0;
+}
+
+</style>
+</head>
+
+<body>
+    
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+<br>
+
+<h3 style="margin-top:0.3em;font-size:1.5em">Mystery Game</h3>
+<p style="font-size:1em;margin-top:-0.8em">- stage 1 -</p>
+
+
+<p>와...혜당관 앞에 부스 많네.. <br>
+어? 이게 뭐지..?</p>
+
+
+{% load static %}
+<img src="{% static 'stones.png'%}" alt="" width="100%">
+
+<p>흐릿하긴 한데.. <br>
+뭐라고 쓰여있는 것 같은데... <br>
+엥? 모든 스톤을 모으면 소원이 이뤄진다고..?</p>
+
+<img src="{% static 'quiz/q01.png'%}" alt="" width="100%" style="position:relative;left:9">
+
+<p>이걸 풀면 저 노란스톤을 얻을 수 있는 건가..? <br>
+동아리 이름들 같은데..</p>
+
+<br><br>
+<br>
+
+<div id="hint"></div>
+
+<form id="userInputForm" action="{% url 'stage2' %}">
+    <input id="userInput" type="text" name="answ2" placeholder="정답을 입력해주세요">
+    <input type="submit">
+</form>
+
+<br><br>
+
+</div>
+
+<script>
+    const userInputForm = document.getElementById('userInputForm');
+    const userInput = document.getElementById('userInput');
+    const hint = document.getElementById('hint');
+
+    function inputValidate1(event){
+        event.preventDefault();
+        let currentValue = userInput.value;
+        if (currentValue !== 'dynamic' && currentValue !== 'Dynamic'){
+            hint.innerText = "Hint) 영어 7글자"
+            userInput.value = ""
+        }else{
+            userInputForm.submit();
+        }
+    }
+    
+    function init(){
+        userInputForm.addEventListener('submit', inputValidate1);
+    }
+
+    init();
+</script>
+
+{% endblock %}
+
+
+
+</body>
